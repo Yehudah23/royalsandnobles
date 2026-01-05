@@ -1,0 +1,23 @@
+.bg-regalis-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+@media (max-width: 767.98px) {
+  .navbar-brand span:first-child {
+    font-size: 1.1rem;
+  }
+
+  .navbar-brand span:last-child {
+    font-size: 8px;
+  }
+}

@@ -1,0 +1,25 @@
+<div class="page-wrap container py-4">
+  <h2 class="mb-3">My Courses</h2>
+
+  <div *ngIf="isLoading" class="py-5 text-center">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+  <div *ngIf="!isLoading && enrolled?.length === 0" class="alert alert-info">
+    You have not enrolled in any courses yet. <a routerLink="/courses">Explore courses</a> to get started.
+  </div>
+
+  <div class="row g-4" *ngIf="!isLoading && enrolled?.length">
+    <div class="col-md-6" *ngFor="let c of enrolled">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ c.title }}</h5>
+          <p class="card-text">{{ c.description }}</p>
+          <a class="btn btn-primary" [routerLink]="['/courses']">Open Course</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

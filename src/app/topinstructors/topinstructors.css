@@ -1,0 +1,27 @@
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: 4px solid var(--bs-secondary-border-subtle);
+  background: linear-gradient(to bottom right, var(--bs-primary), var(--bs-accent));
+  color: white;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover .avatar-fallback {
+  border-color: var(--bs-secondary);
+}

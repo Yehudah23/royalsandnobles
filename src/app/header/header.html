@@ -1,0 +1,75 @@
+<header class="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm sticky-top">
+  <div class="container-xl">
+    
+   
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <span class="h2 text-secondary me-2 mb-0">👑</span>
+      <div>
+        <span class="fw-bold text-primary" style="letter-spacing: 0.1em;">REGALIS</span>
+        <span class="d-block text-muted" style="font-size: 10px; letter-spacing: 0.2em; margin-top: -5px;">ACADEMY</span>
+      </div>
+    </a>
+
+   
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="fs-3">☰</span>
+    </button>
+
+    
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      
+     
+      <div class="d-none d-md-flex flex-grow-1 px-md-4 mx-auto" style="max-width: 500px;">
+        <div class="input-group">
+          <span class="input-group-text bg-light border-end-0 text-muted">
+            <span>🔍</span>
+          </span>
+          <input type="text" class="form-control bg-light border-start-0" placeholder="Search for royal courses...">
+        </div>
+      </div>
+
+     
+      <ul class="navbar-nav ms-auto align-items-center gap-1">
+        <li class="nav-item">
+          <a class="nav-link" (click)="navigateToCourses()">Courses</a>
+        </li>
+        <li class="nav-item d-none d-md-block">
+          <a class="nav-link" (click)="navigateToStudents()">Students</a>
+        </li>
+        <li class="nav-item d-none d-md-block">
+          <a class="nav-link" (click)="navigateToTutors()">Tutors</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-danger" (click)="navigateToAdmin()">
+            <span *ngIf="isAdmin">Admin</span>
+            <span *ngIf="!isAdmin">Admin</span>
+          </a>
+        </li>
+        <li class="nav-item d-none d-sm-block">
+          <a class="nav-link" href="#" aria-label="Notifications">
+            <span class="fs-5">🔔</span>
+          </a>
+        </li>
+        <li class="nav-item d-none d-sm-block">
+          <a class="nav-link" href="#" aria-label="Shopping Cart">
+            <span class="fs-5">🛒</span>
+          </a>
+        </li>
+        <li class="nav-item d-none d-md-block ms-2">
+          <button class="btn btn-outline-primary" (click)="navigateToSignin()">Sign In</button>
+        </li>
+        <li class="nav-item d-none d-md-block ms-2">
+          <button class="btn btn-primary bg-regalis-gradient text-white" (click)="navigateToSignup()">Enroll Now</button>
+        </li>
+
+
+        <li class="nav-item d-md-none mt-2">
+          <button class="btn btn-outline-primary w-100" (click)="navigateToSignin()">Sign In</button>
+        </li>
+        <li class="nav-item d-md-none mt-2 mb-2">
+          <button class="btn btn-primary bg-regalis-gradient text-white w-100" (click)="navigateToSignup()">Enroll Now</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

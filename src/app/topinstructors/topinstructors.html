@@ -1,0 +1,71 @@
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Top Instructors</h2>
+        <p class="lead text-muted">Learn from the best in their fields</p>
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="alert alert-danger text-center" role="alert">
+      {{ error }}
+    </div>
+
+    <div *ngIf="!isLoading && !error">
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-end">
+            <label for="sortSelect" class="form-label me-2">Sort by:</label>
+            <select id="sortSelect" class="form-select w-auto" [(ngModel)]="sortBy" (ngModelChange)="onSortChange()">
+              <option value="ratingDesc">Rating (High to Low)</option>
+              <option value="ratingAsc">Rating (Low to High)</option>
+              <option value="studentsDesc">Students (High to Low)</option>
+              <option value="studentsAsc">Students (Low to High)</option>
+              <option value="coursesDesc">Courses (High to Low)</option>
+              <option value="coursesAsc">Courses (Low to High)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4">
+        <div *ngFor="let instructor of instructors; trackBy: trackByInstructor" class="col-lg-4 col-md-6">
+          <div class="card h-100 shadow-sm border-0 instructor-card">
+            <div class="card-body text-center p-4">
+              <div class="instructor-avatar mb-3">
+                <img [src]="instructor.image" [alt]="instructor.name" class="rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+              </div>
+              <h5 class="card-title fw-bold mb-1">{{ instructor.name }}</h5>
+              <p class="text-primary fw-semibold mb-2">{{ instructor.title }}</p>
+              <p class="card-text text-muted small mb-3">{{ instructor.bio }}</p>
+              <div class="row text-center mb-3">
+                <div class="col-4">
+                  <div class="fw-bold text-warning">{{ instructor.rating }}</div>
+                  <small class="text-muted">Rating</small>
+                </div>
+                <div class="col-4">
+                  <div class="fw-bold">{{ instructor.students | number }}</div>
+                  <small class="text-muted">Students</small>
+                </div>
+                <div class="col-4">
+                  <div class="fw-bold">{{ instructor.courses }}</div>
+                  <small class="text-muted">Courses</small>
+                </div>
+              </div>
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <span class="text-warning me-1">🏆</span>
+                <small class="text-muted">{{ instructor.experience }}</small>
+              </div>
+              <button class="btn btn-primary btn-sm">View Profile</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

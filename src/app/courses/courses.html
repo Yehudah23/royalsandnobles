@@ -1,0 +1,44 @@
+<div class="page-wrap">
+	<h2>All Courses</h2>
+
+	<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+	<div *ngIf="isLoading" class="py-5 text-center">
+		<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+	</div>
+
+	<div *ngIf="!isLoading && !error">
+		<div *ngIf="isTutor">
+			<h4>Upload a new course</h4>
+			<form (ngSubmit)="onUpload()" #uploadForm="ngForm">
+				<div class="mb-2">
+					<input class="form-control" placeholder="Course title" [(ngModel)]="upload.title" name="title" required />
+				</div>
+				<div class="mb-2">
+					<textarea class="form-control" placeholder="Short description" [(ngModel)]="upload.description" name="description"></textarea>
+				</div>
+				<div class="mb-2">
+					<input type="file" (change)="onFileChange($event)" />
+				</div>
+				<button class="btn btn-primary" [disabled]="uploading">Upload</button>
+			</form>
+			<hr />
+		</div>
+
+		<div>
+			<h4>Available courses</h4>
+			<div *ngIf="courses.length === 0">No courses yet.</div>
+			<div class="list-group">
+				<div *ngFor="let c of courses" class="list-group-item">
+					<div class="d-flex justify-content-between">
+						<div>
+							<h5 class="mb-1">{{ c.title }}</h5>
+							<p class="mb-0 text-muted">{{ c.description }}</p>
+						</div>
+						<small class="text-muted">{{ c.status }}</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

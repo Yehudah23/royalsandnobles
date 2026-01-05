@@ -1,0 +1,30 @@
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center mb-5">
+        <h2 class="display-5 fw-bold text-dark mb-3">Explore Categories</h2>
+        <p class="lead text-muted">Find the perfect course in your area of interest</p>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      @for (category of categories; track category.name) {
+        <div class="col-lg-4 col-md-6">
+          <div class="card h-100 shadow-sm border-0 category-card">
+            <div class="card-body text-center p-4">
+              <div class="category-icon mb-3">
+                <i [class]="'bi ' + category.icon + ' text-' + category.color" style="font-size: 3rem;"></i>
+              </div>
+              <h5 class="card-title fw-bold mb-2">{{ category.name }}</h5>
+              <p class="card-text text-muted mb-3">{{ category.description }}</p>
+              <div class="d-flex align-items-center justify-content-center mb-3">
+                <small class="text-muted">{{ category.courses }} courses available</small>
+              </div>
+              <button class="btn btn-outline-primary btn-sm">Explore Courses</button>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

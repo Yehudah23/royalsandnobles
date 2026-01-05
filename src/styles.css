@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Custom global styles */
+.bg-regalis-gradient {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
+}
+
+.text-regalis {
+  color: #1e3a8a;
+}
+
+.btn-regalis {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #1e40af 100%);
+  border: none;
+  color: white;
+}
+
+.btn-regalis:hover {
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #1e3a8a 100%);
+  color: white;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+}

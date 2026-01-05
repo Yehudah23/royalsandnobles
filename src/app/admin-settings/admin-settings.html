@@ -1,0 +1,28 @@
+<div class="admin-settings">
+  <h3>Admin Settings</h3>
+  <div *ngIf="email">Signed in as <strong>{{ email }}</strong></div>
+
+  <form (ngSubmit)="changePassword()">
+    <label>
+      Current password (leave blank if using active session)
+      <input type="password" [(ngModel)]="currentPassword" name="currentPassword" />
+    </label>
+
+    <label>
+      New password
+      <input type="password" [(ngModel)]="newPassword" name="newPassword" required />
+    </label>
+
+    <label>
+      Confirm new password
+      <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+    </label>
+
+    <div class="actions">
+      <button type="submit" [disabled]="loading">Change Password</button>
+    </div>
+  </form>
+
+  <div *ngIf="message" class="text-success">{{ message }}</div>
+  <div *ngIf="error" class="text-danger">{{ error }}</div>
+</div>

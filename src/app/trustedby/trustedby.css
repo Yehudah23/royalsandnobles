@@ -1,0 +1,18 @@
+.trusted-logo {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.trusted-logo:hover {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
+@media (max-width: 768px) {
+  .trusted-logo {
+    width: 80px;
+    height: auto;
+    margin: 1rem;
+  }
+}
