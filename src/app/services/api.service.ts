@@ -1,46 +1,25 @@
-import { getAuthSafe, firebaseInitialized } from '../firebase.config';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom } from 'rxjs';
 
-// Minimal API client using fetch
-export async function apiFetch(path: string, options: RequestInit = {}) {
-  const headers = options.headers ? new Headers(options.headers as any) : new Headers();
-  if (firebaseInitialized) {
-    try {
-      const auth = getAuthSafe();
-      const token = await auth.currentUser?.getIdToken();
-      if (token) headers.set('Authorization', `Bearer ${token}`);
-    } catch (e) {
-      // ignore
-    }
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  private http = inject(HttpClient);
+  private base = '/api';
+
+  async uploadCourse(formData: FormData): Promise<any> {
+    return lastValueFrom(this.http.post(`${this.base}/uploadCourse.php`, formData, { withCredentials: true }));
   }
-  options.headers = headers;
-  const res = await fetch(path, options);
-  if (!res.ok) throw new Error(`API error ${res.status}`);
-  return res.json();
-}
 
-export async function uploadCourse(formData: FormData) {
-  const res = await fetch('/server/api/uploadCourse.php', {
-    method: 'POST',
-    body: formData,
-    // Authorization header added by apiFetch is not used here because fetch with FormData cannot set headers easily in same way
-    headers: {}
-  });
-  if (!res.ok) throw new Error(`Upload failed ${res.status}`);
-  return res.json();
-}
+  async listCourses(): Promise<any> {
+    return lastValueFrom(this.http.get(`${this.base}/listCourses.php`));
+  }
 
-export async function listCourses() {
-  return apiFetch('/server/api/listCourses.php');
-}
+  async listPendingCourses(): Promise<any> {
+    return lastValueFrom(this.http.get(`${this.base}/listPendingCourses.php`, { withCredentials: true }));
+  }
 
-export async function listPendingCourses() {
-  return apiFetch('/server/api/listPendingCourses.php');
-}
-
-export async function approveCourse(id: string) {
-  return apiFetch('/server/api/approveCourse.php', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ id })
-  });
+  async approveCourse(id: string): Promise<any> {
+    return lastValueFrom(this.http.post(`${this.base}/approveCourse.php`, { id }, { withCredentials: true }));
+  }
 }

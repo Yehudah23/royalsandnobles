@@ -1,0 +1,16 @@
+h1 {
+  color: #333;
+  font-weight: bold;
+}
+
+h3 {
+  color: #555;
+}
+
+.lead {
+  color: #666;
+}
+
+ul {
+  line-height: 2;
+}

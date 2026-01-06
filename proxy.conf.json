@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://localhost/royals&nobles/server",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

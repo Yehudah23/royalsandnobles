@@ -1,39 +1,112 @@
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card shadow">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">Contact Us</h2>
-          <p class="text-center mb-4">Get in touch with us through our social media channels:</p>
-          <div class="row text-center">
-            <div class="col-md-4 mb-3">
-              <a href="https://facebook.com/yourpage" target="_blank" class="btn btn-outline-primary w-100">
-                <span class="fs-4 me-2">f</span>Facebook
-              </a>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <h1 class="text-center mb-4">Contact Us</h1>
+      <p class="text-center text-muted mb-5">Have a question? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+
+      <div *ngIf="submitted" class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Thank you!</h4>
+        <p>Your message has been sent successfully. We'll get back to you soon.</p>
+      </div>
+
+      <div *ngIf="error" class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <form (ngSubmit)="submitForm()" #contactFormElement="ngForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="name" 
+                name="name"
+                [(ngModel)]="contactForm.name" 
+                placeholder="John Doe"
+                required>
             </div>
-            <div class="col-md-4 mb-3">
-              <a href="https://twitter.com/yourhandle" target="_blank" class="btn btn-outline-info w-100">
-                <span class="fs-4 me-2">🐦</span>Twitter
-              </a>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+              <input 
+                type="email" 
+                class="form-control" 
+                id="email" 
+                name="email"
+                [(ngModel)]="contactForm.email" 
+                placeholder="john@example.com"
+                required>
             </div>
-            <div class="col-md-4 mb-3">
-              <a href="https://linkedin.com/in/yourprofile" target="_blank" class="btn btn-outline-secondary w-100">
-                <span class="fs-4 me-2">in</span>LinkedIn
-              </a>
+
+            <div class="mb-3">
+              <label for="subject" class="form-label">Subject</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="subject" 
+                name="subject"
+                [(ngModel)]="contactForm.subject" 
+                placeholder="What is this about?">
             </div>
+
+            <div class="mb-3">
+              <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+              <textarea 
+                class="form-control" 
+                id="message" 
+                name="message"
+                [(ngModel)]="contactForm.message" 
+                rows="6" 
+                placeholder="Tell us what's on your mind..."
+                required></textarea>
+            </div>
+
+            <div class="d-grid">
+              <button 
+                type="submit" 
+                class="btn btn-warning btn-lg"
+                [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                {{ loading ? 'Sending...' : 'Send Message' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-md-4 text-center mb-4">
+          <div class="contact-info-box p-4">
+            <div class="fs-1 text-warning mb-3">📧</div>
+            <h5>Email</h5>
+            <p class="text-muted">support@royalsandnobles.com</p>
           </div>
-          <div class="row text-center mt-3">
-            <div class="col-md-6 mb-3">
-              <a href="https://instagram.com/yourhandle" target="_blank" class="btn btn-outline-danger w-100">
-                <span class="fs-4 me-2">📷</span>Instagram
-              </a>
-            </div>
-            <div class="col-md-6 mb-3">
-              <a href="mailto:contact@royalsandnobles.com" class="btn btn-outline-success w-100">
-                <span class="fs-4 me-2">✉️</span>Email Us
-              </a>
-            </div>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+          <div class="contact-info-box p-4">
+            <div class="fs-1 text-warning mb-3">📞</div>
+            <h5>Phone</h5>
+            <p class="text-muted">+1 (555) 123-4567</p>
           </div>
+        </div>
+        <div class="col-md-4 text-center mb-4">
+          <div class="contact-info-box p-4">
+            <div class="fs-1 text-warning mb-3">📍</div>
+            <h5>Office</h5>
+            <p class="text-muted">123 Learning Street<br>Education City, EC 12345</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-4">
+        <h5 class="mb-3">Follow Us</h5>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="https://facebook.com" target="_blank" class="btn btn-outline-secondary btn-sm">Facebook</a>
+          <a href="https://twitter.com" target="_blank" class="btn btn-outline-secondary btn-sm">Twitter</a>
+          <a href="https://instagram.com" target="_blank" class="btn btn-outline-secondary btn-sm">Instagram</a>
+          <a href="https://linkedin.com" target="_blank" class="btn btn-outline-secondary btn-sm">LinkedIn</a>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ApiHttpService {
-  public base = '/server/api';
+  public base = '/api';
   // Set this to true to use MySQL-backed endpoints (requires DB and schema imported)
   public useMysql = true;
   private csrfToken: string | null = null;

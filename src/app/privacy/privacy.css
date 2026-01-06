@@ -1,0 +1,14 @@
+h1 {
+  font-weight: bold;
+  color: #333;
+}
+
+h3 {
+  color: #555;
+  font-weight: 600;
+}
+
+p, li {
+  line-height: 1.8;
+  color: #666;
+}

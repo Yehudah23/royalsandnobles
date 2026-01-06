@@ -4,13 +4,33 @@
 }
 
 .footer a {
-  color: var(--bs-light);
+  color: #ffffff !important;
   text-decoration: none;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .footer a:hover {
-  color: var(--bs-primary);
+  color: #ffc107 !important;
+  text-decoration: underline;
+}
+
+.footer .text-muted {
+  color: #adb5bd !important;
+}
+
+a[routerLink] {
+  cursor: pointer;
+  color: #ffffff !important;
+}
+
+a[routerLink]:hover {
+  color: #ffc107 !important;
+  text-decoration: underline;
+}
+
+h5, h6 {
+  color: #ffffff !important;
 }
 
 .social-icon {

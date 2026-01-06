@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { getAuthSafe, firebaseInitialized } from '../firebase.config';
-import { listCourses, uploadCourse } from '../services/api.service';
+import { ApiService } from '../services/api.service';
 import { getUserRole } from '../services/auth.service';
 
 @Component({
@@ -20,6 +20,8 @@ export class Courses implements OnInit {
 
   upload: any = { title: '', description: '', file: null };
   uploading = false;
+
+  constructor(private api: ApiService) {}
 
   ngOnInit(): void {
     this.loadCourses();
@@ -40,7 +42,7 @@ export class Courses implements OnInit {
     this.isLoading = true;
     this.error = null;
     try {
-      const data = await listCourses();
+      const data = await this.api.listCourses();
       this.courses = Array.isArray(data) ? data : (data.courses || []);
     } catch (e: any) {
       console.error('Failed to load courses', e);
@@ -63,7 +65,7 @@ export class Courses implements OnInit {
       fd.append('title', this.upload.title);
       fd.append('description', this.upload.description || '');
       fd.append('file', this.upload.file);
-      const resp = await uploadCourse(fd);
+      const resp = await this.api.uploadCourse(fd);
       // refresh list
       await this.loadCourses();
       this.upload = { title: '', description: '', file: null };

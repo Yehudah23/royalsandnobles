@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminSessionService } from '../services/admin-session.service';
 import { Router } from '@angular/router';
-import { approveCourse, listPendingCourses } from '../services/api.service';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-admin',
@@ -17,7 +17,7 @@ export class Admin implements OnInit {
   error: string | null = null;
   adminEmail: string | null = null;
 
-  constructor(private adminSession: AdminSessionService, private router: Router) {}
+  constructor(private adminSession: AdminSessionService, private router: Router, private api: ApiService) {}
 
   ngOnInit(): void {
     this.checkStatusAndLoad();
@@ -42,7 +42,7 @@ export class Admin implements OnInit {
     this.loading = true;
     this.error = null;
     try {
-      const data = await listPendingCourses();
+      const data = await this.api.listPendingCourses();
       this.pending = Array.isArray(data) ? data : (data.courses || []);
     } catch (e: any) {
       console.error('Failed to load pending', e);
@@ -54,7 +54,7 @@ export class Admin implements OnInit {
 
   async approve(id: string) {
     try {
-      await approveCourse(id);
+      await this.api.approveCourse(id);
       await this.loadPending();
     } catch (e: any) {
       console.error('Approve failed', e);
