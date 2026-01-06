@@ -49,3 +49,26 @@ h1 {
 .alert {
   border-radius: 8px;
 }
+
+.social-link {
+  display: inline-block;
+  transition: transform 0.3s ease;
+  background: #f8f9fa;
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  background: #ffc107;
+  border-color: #ffc107;
+}
+
+.social-icon-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+  filter: brightness(0.7) contrast(1.2);
+}

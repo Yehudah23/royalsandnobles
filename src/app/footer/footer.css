@@ -53,3 +53,23 @@ h5, h6 {
   padding-top: 1rem;
   margin-top: 2rem;
 }
+
+.social-media-link {
+  display: inline-block;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  background: white;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.social-media-link:hover {
+  transform: scale(1.1);
+  background: #ffc107;
+}
+
+.social-media-icon {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  display: block;
+}
